@@ -1,0 +1,41 @@
+/* ------- TOP NAVIGATION BAR ---------------------*/
+
+@layer componants-navbar{
+    .game-list{
+        background-color: var(--secondary-color);
+        height:50px;
+        border:2px solid var(--primary-dark-color);
+        align-content: center;
+
+    }
+
+
+    .game-list{
+        background-color: var(--secondary-color);
+        height:50px;
+        border:2px solid var(--primary-dark-color);
+        align-content: center;
+    }
+
+    .menu{
+        display:none;
+    }
+    
+    .game-list-items{
+        list-style-type: none;
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    
+    .game-list-items>li>a{
+        color:var(--primary-text-color);
+        text-decoration: none;
+    }
+
+    .game-list-items>li>a:hover{
+        border-bottom: 5px solid var(--primary-dark-color);
+        background-color: var(--primary-color);   
+        border-radius: 5px;
+        color: var(--primary-dark-color);
+    }
+}

@@ -1,0 +1,18 @@
+@layer variables {
+    :root {
+        --primary-color: #7041a6;
+        --secondary-color: pink;
+
+        --primary-text-color:#f9f7fa;
+        --secondry-text-color: #1c2e2e;
+
+        --font-family: "Sofia", sans-serif;
+
+        --primary-font-size: 1.3rem;
+        --secondary-font-size: 3rem;
+
+        --spacing-unit: 3px;
+
+       
+    }
+}

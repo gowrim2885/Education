@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Form</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <header>
+        <h3>STUDENT MANAGEMENT SYSTEM</h3>
+    </header>
+    <main>
+
+        <div class="nav-btns">
+            <a href="addForm.html">Add Student </a>
+            <a onclick="sortTable()">Sort Az</a>
+            <a onclick="sortTablereverse()">Sort ZA </a>
+        </div>
+        
+        <div class="container">
+             <div class="card" id="main-content">
+                <h2>Add Student</h2>
+                 <div class="form-card">
+                    <form  id="AddUserForm" class="user-form">
+
+                        <label for="name">Name </label><br>
+                        <input type="text" id="name" name="Name" placeholder="Enter your FullName" required/><br><br>
+
+                        <label for="age">Age </label><br>
+                        <input type="number" id="age" name="Age" required><br><br>
+
+                        <label> Gender </label><br>
+                        <input type="radio" id="female" value="female" name="Gender">
+                        <label for="female">Female</label>
+                        <input type="radio" id="male" value="male" name="Gender">
+                        <label for="male">Male</label><br> <br>
+
+                        <label for="Qualification">Qualification</label>
+                        <select name="Qualification" id="Qualification">
+                            <option value="" selected disabled> -- select option --</option>
+                            <option value="High School">High School</option>
+                            <option value="Higher Secondary School">Higher Secondary School</option>
+                            <option value="UG">Under Graduate</option>
+                            <option value="PG">Post Graduate</option>
+                        </select>
+                        <br> <br>
+            
+                        <label>Select your favorite subject</label><br>
+                        <input type="checkbox" id="phy" name="subject" value="Physics">
+                        <label for="phy">Physics</label><br>
+                        <input type="checkbox" id="math" name="subject" value="Maths">
+                        <label for="math">Maths</label><br>
+                        <input type="checkbox" id="chem" name="subject" value="Chemistry">
+                        <label for="chem">Chemistry</label><br>
+                        <input type="checkbox" id="cs" name="subject" value="Computer Science">
+                        <label for="cs">Computer Science</label><br> 
+
+                        <button type="submit">Add</button>
+                    </form>
+                
+                </div> 
+           </div>
+        </div>
+</div>
+</main>
+
+<script src="script\script.js"></script>
+</body>
+</html>
+
+
+ 

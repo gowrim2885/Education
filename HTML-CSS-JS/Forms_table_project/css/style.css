@@ -1,0 +1,58 @@
+@layer style{
+   
+
+h2, h3{
+    text-align: center;
+    color:white;
+    font-size: 2rem;
+    padding:10px;
+}
+h2{
+    color:black;
+}
+
+.nav-btns > a{
+    margin: 10px;
+    padding:5px;
+    cursor: pointer;
+    text-decoration:none;
+    color:white;
+}
+
+
+
+table, th, tr, td {
+    border:2px solid black;
+    border-collapse: collapse;
+    padding:5px; 
+}
+
+.mytable{
+    width:100%;
+
+}
+
+thead{
+    background-color:rgba(206, 201, 201, 2);
+}
+ 
+
+.user-form{
+    margin:20px 20px;
+}
+
+
+
+input[type="text"],input[type="number"], select{
+    padding:6px;
+    width:100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+ input[type="radio"],input[type="checkbox"] {
+     padding:6px;
+
+ }
+
+ 
+}

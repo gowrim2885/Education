@@ -1,0 +1,101 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>Project 1</title>
+<link rel="stylesheet" href="project_1.css">
+<meta name="viewport" content="width=device-width , initial-scale=1.0">
+
+<script>
+
+var element = document.querySelector(':root');
+
+function darktheme(){
+element.style.setProperty('--header-left-bgcolor', '#332931');
+element.style.setProperty('--header-right-up-bg-color', '#333536');
+element.style.setProperty('--header-right-down-bg-color', '#607175');
+element.style.setProperty('--sidebar-bg-color', '#6a6d6e');
+element.style.setProperty('--data-bg-color', '#a0a7a8');
+element.style.setProperty('--button-color','#332931');
+element.style.setProperty('--text-color', '#ffffff');
+}
+
+function violeteTheme(){
+element.style.setProperty('--header-left-bgcolor', '#650269');
+element.style.setProperty('--header-right-up-bg-color', '#5a055e');
+element.style.setProperty('--header-right-down-bg-color', '#6a1e6e');
+element.style.setProperty('--sidebar-bg-color', '#ab53b0');
+element.style.setProperty('--data-bg-color', '#c67bc9');
+element.style.setProperty('--button-color','#650269');
+element.style.setProperty('--text-color', '#ffffff');
+}
+
+function brownTheme(){
+element.style.setProperty('--header-left-bgcolor', '#a30707');
+element.style.setProperty('--header-right-up-bg-color', '#940404');
+element.style.setProperty('--header-right-down-bg-color', '#b02020');
+element.style.setProperty('--sidebar-bg-color', '#f06060');
+element.style.setProperty('--data-bg-color', '#fa8484');
+element.style.setProperty('--button-color','#a30707');
+element.style.setProperty('--text-color', '#ffffff');
+}
+
+function orangeTheme(){
+element.style.setProperty('--header-left-bgcolor', '#ba601c');
+element.style.setProperty('--header-right-up-bg-color', '#e07624');
+element.style.setProperty('--header-right-down-bg-color', '#eb8231');
+element.style.setProperty('--sidebar-bg-color', '#fa7107');
+element.style.setProperty('--data-bg-color', '#faa96b');
+element.style.setProperty('--button-color', '#ba601c');
+element.style.setProperty('--text-color', '#ffffff');
+}
+
+function blackandwhite(){
+element.style.setProperty('--header-left-bgcolor', '#262422');
+element.style.setProperty('--header-right-up-bg-color', '#6b6967');
+element.style.setProperty('--header-right-down-bg-color', '#b8aea7');
+element.style.setProperty('--sidebar-bg-color', '#cccbca');
+element.style.setProperty('--data-bg-color', '#f7f5f2');
+element.style.setProperty('--button-color','#262422');
+element.style.setProperty('--text-color', '#ffffff');
+}
+
+function defaultTheme(){
+element.style.setProperty('--header-left-bgcolor', '#39088c');
+element.style.setProperty('--header-right-up-bg-color', '#2a2894');
+element.style.setProperty('--header-right-down-bg-color', '#4d4bb3');
+element.style.setProperty('--sidebar-bg-color', '#abaae6');
+element.style.setProperty('--data-bg-color', '#c3c3eb');
+element.style.setProperty('--button-color', '#39088c');
+element.style.setProperty('--text-color', '#ffffff');
+}
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+ <div id="header-left"></div>
+ <div id="header-right">
+   <div id="header-right-up"></div>
+   <div id="header-right-down"></div>
+ </div>
+</header>
+
+ <div class="container">
+  <aside id="sidebar"></aside>
+  <section id="data"><div class="button-set">
+ 	<button type="button" onclick="violeteTheme()">Set Violete Color</button><br>
+ 	<button type="button" onclick="brownTheme()">Set Brown Color</button><br>
+ 	<button type="button" onclick="orangeTheme()">Set Orange background</button><br>
+ 	<button type="button" onclick="darktheme()">Dark</button><br>
+	<button type="button" onclick="blackandwhite()">Set Black and White</button><br>
+	<button type="button" onclick="defaultTheme()"> Set Default Blue color</button>
+	</div>
+  </section>
+ </div>
+
+</body>
+
+</html>

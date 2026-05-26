@@ -1,0 +1,137 @@
+const STORAGE_KEY = "students";
+
+
+document.addEventListener('DOMContentLoaded',() =>{
+ const studentForm = document.getElementById("AddUserForm");
+    if(studentForm){
+        studentForm.addEventListener('submit', addStudent);
+    }
+
+    const studentTable = document.getElementById('myTable');
+    if(studentTable){
+        loadStudents();
+    }
+        
+
+    const editIndex = localStorage.getItem("editIndex");
+
+    if (editIndex !== null) {
+        let data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        let student = data[editIndex];
+
+        document.getElementById("name").value = student.name;
+        document.getElementById("age").value = student.age;
+        document.getElementById("Qualification").value = student.qualification;
+
+        if (student.gender === "female") document.getElementById("female").checked = true;
+        if (student.gender === "male") document.getElementById("male").checked = true;
+
+        document.querySelectorAll('input[name="subject"]').forEach(cb => {
+            cb.checked = student.subjects.includes(cb.value);
+        });
+
+        document.querySelector("button[type='submit']").textContent = "Update";
+    }
+
+});
+
+
+
+function addStudent(e){
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const age = document.getElementById("age").value;
+    const qualification = document.getElementById("Qualification").value;
+
+    let gender= "";
+    if(document.getElementById("female").checked){
+        gender = "female";
+    }
+    if(document.getElementById("male").checked){
+        gender="male";
+    }
+    let subjects = [];
+    document.querySelectorAll('input[name="subject"]:checked')
+        .forEach(arg => subjects.push(arg.value));
+
+    const student = { name, age, gender, qualification, subjects };
+    let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    const editIndex = localStorage.getItem("editIndex");
+
+    if (editIndex !== null) {
+        data[editIndex] = student;
+        localStorage.removeItem("editIndex");
+    } else {
+        data.push(student);
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    window.location.href = "index.html";
+}
+
+function loadStudents(){
+    let data= JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    const tbody = document.querySelector("#myTable tbody");
+    tbody.innerHTML = "";
+    data.forEach((student, index) => addRow(student, index));
+
+}
+
+function addRow(student, index){
+    const tbody = document.querySelector("#myTable tbody");
+    const row = tbody.insertRow();
+
+    row.insertCell(0).textContent = student.name;
+    row.insertCell(1).textContent = student.age;
+    row.insertCell(2).textContent = student.gender;
+    row.insertCell(3).textContent = student.qualification;
+    row.insertCell(4).textContent = student.subjects.join(", ");
+    
+    const actionCell = row.insertCell(5);
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "Delete";
+
+    delBtn.onclick = function () {
+        let data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        data.splice(index, 1);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        location.reload();
+    };
+    actionCell.appendChild(delBtn);
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.classList.add("edit-btn");
+    editBtn.dataset.index = index;
+
+    editBtn.onclick = function () {
+        localStorage.setItem("editIndex", index);
+        window.location.href = "addForm.html";
+    };
+
+actionCell.appendChild(editBtn);
+
+
+}
+
+
+
+
+
+function sortTable(){
+    let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    data.sort((a,b)=> a.name.localeCompare(b.name));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    loadStudents();
+}
+
+
+function sortTablereverse(){
+   let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+   data.sort((a,b)=> b.name.localeCompare(a.name));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    loadStudents();
+}
+
+
+
+ 

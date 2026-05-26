@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componants/navbar.css">
+    <link rel="stylesheet" href="css/componants/sidebar.css">
+    <link rel="stylesheet" href="css/main-body-content.css">
+    <link rel="stylesheet" href="css/responsive.css">
+ 
+   <title>CSS LAYERS</title>
+</head>
+<body>
+    <header>
+        <h2>Tic-Tac-Toe </h2>
+    </header>
+
+    <nav class="game-list"><b>
+
+        <!-- <a class="menu" href="javascript:void(0)" onclick="toggleMenu()">Menu</a> -->
+       
+        <ul class="game-list-items">    
+            <li><a href="#">Queen Game</a></li>
+            <li><a href="#">Zip</a></li>
+            <li><a href="#">Tango</a></li>
+            <li><a href="#">Quiz</a></li>
+        </ul>
+     </b>
+    </nav>
+
+    <div class="body-content">
+        <aside class="side-bar" id="menu">
+            <select name="theme" class="selection">
+                <option value="" disabled selected>Theme</option>
+                <option value="default" id="theme">default</option>
+                <option value="bluetheme" id="theme">bluetheme</option>
+            </select>
+
+            <select name="game" class="selection">
+                <option value="" disabled selected>Games</option>
+                <option value="Queen" id="game">Queen</option>
+                <option value="Zip" id="game">Queen</option>
+                <option value="Tango" id="game">Tango</option>
+                <option value="Quiz" id="game">Quiz</option>
+            </select>
+        </aside>
+
+        <main class="game-content">
+            <section>
+                <div class="container">
+                    <div class="btn" id="btn0" data-index="0" onclick="makeAction(0)"></div>
+                    <div class="btn" id="btn1" data-index="1" onclick="makeAction(1)"></div>
+                    <div class="btn" id="btn2" data-index="2" onclick="makeAction(2)"></div>
+                    <div class="btn" id="btn3" data-index="3" onclick="makeAction(3)"></div>
+                    <div class="btn" id="btn4" data-index="4" onclick="makeAction(4)"></div>
+                    <div class="btn" id="btn5" data-index="5" onclick="makeAction(5)"></div>
+                    <div class="btn" id="btn6" data-index="6" onclick="makeAction(6)"></div>
+                    <div class="btn" id="btn7" data-index="7" onclick="makeAction(7)"></div>
+                    <div class="btn" id="btn8" data-index="8" onclick="makeAction(8)"></div>
+                   
+                </div>
+            </section>
+
+    </main>
+    </div>
+  
+    
+    <script src="javascript/togglemenu.js"></script>
+</body>
+</html>

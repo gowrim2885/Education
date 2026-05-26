@@ -1,0 +1,146 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>Project 1</title>
+<meta name="viewport" content="width=device-width , initial-scale=1.0">
+
+<style>
+:root{
+--header-left-bgcolor:#39088c;
+--header-right-up-bg-color:#2a2894;
+--header-right-down-bg-color:#4d4bb3;
+--sidebar-bg-color:#abaae6;
+--data-bg-color:#c3c3eb;
+--button-color:#39088c;
+--text-color:#ffffff;
+}
+
+
+header{
+margin:0px;
+display:flex;
+flex-direction:row;
+flex-wrap:wrap;
+height:100px;
+width:100%;
+}
+
+#header-left{
+flex:0 0 30%;
+background-color:var(--header-left-bgcolor);
+}
+
+#header-right{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+#header-right-up{
+flex:1;
+background-color:var(--header-right-up-bg-color);
+}
+
+#header-right-down{
+flex:1;
+background-color:var(--header-right-down-bg-color);
+}
+
+.container{
+display:flex;
+flex-direction:row;
+flex-wrap:wrap;
+width:100%;
+height:100%;
+}
+
+#sidebar{
+flex:0 0 30%;
+background-color:var(--sidebar-bg-color);
+}
+
+#data{
+flex:1;
+background-color:var(--data-bg-color);
+}
+
+.button-set{
+text-align:center;
+margin:10%;
+padding:20px;
+}
+
+input[type="radio"]{
+padding:5px;
+margin:10px;
+background-color:var(--button-color);
+border-radius:5px;
+color:var(--text-color);
+}
+
+body:has(#violetetheme:checked){
+--header-left-bgcolor:#332931;
+--header-right-up-bg-color:#333536;
+--header-right-down-bg-color:#607175;
+--sidebar-bg-color:#6a6d6e;
+--data-bg-color:#a0a7a8;
+--button-color:#332931;
+--text-color:#ffffff;
+}
+
+body:has(#browntheme:checked){
+--header-left-bgcolor:#a30707;
+--header-right-up-bg-color:#940404;
+--header-right-down-bg-color:#b02020;
+--sidebar-bg-color:#f06060;
+--data-bg-color:#fa8484;
+--button-color:#a30707;
+--text-color:#ffffff;
+}
+
+body:has(#orangetheme:checked){
+--header-left-bgcolor:#ba601c;
+--header-right-up-bg-color:#e07624;
+--header-right-down-bg-color:#eb8231;
+--sidebar-bg-color:#fa7107;
+--data-bg-color:#faa96b;
+--button-color:#ba601c;
+--text-color:#ffffff;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+ <div id="header-left"></div>
+ <div id="header-right">
+   <div id="header-right-up"></div>
+   <div id="header-right-down"></div>
+ </div>
+</header>
+
+ <div class="container">
+  <aside id="sidebar"></aside>
+  <section id="data"><div class="button-set">	
+	
+	<input type="radio" id="violetetheme" value="violetetheme" name="theme">
+	<label for="violetetheme">Set Violete Color</label>
+
+	<input type="radio" id="browntheme" value="browntheme" name="theme">
+	<label for="browntheme">Set Brown Color</label>
+
+	<input type="radio" id="orangetheme" value="orangetheme" name="theme">
+	<label for="orangetheme">Set Orange background</label>
+
+
+</div>
+  </section>
+ </div>
+
+</body>
+
+</html>

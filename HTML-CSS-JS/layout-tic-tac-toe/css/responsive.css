@@ -1,0 +1,33 @@
+@layer responsive{
+
+    @media(max-width:600px){
+        header{
+            font-size: 10vw;
+        }
+        .game-list-items{
+            display:none;
+        }                                    
+
+        .menu{
+            display:inline-block;
+            color:var(--primary-text-color);
+            text-decoration:none;
+            cursor:pointer;
+        }
+        
+        .side-bar {
+            position: absolute;
+            left:0;
+            top: 150px;
+            box-sizing: 
+            border-box;
+            display:none;
+            width:100%;
+        }
+        
+        .side-bar.active {
+            display:block;
+        }   
+
+}
+}

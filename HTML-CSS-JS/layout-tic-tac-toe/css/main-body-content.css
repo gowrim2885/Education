@@ -1,0 +1,35 @@
+/*--------------- MAIN BODY CONTENT ------------------ */
+
+@layer main-body-content.css{
+    .body-content{
+        background-color: var(--primary-color);
+        width:100%;
+        display:flex;
+        flex-direction: row;
+    }
+    
+    .game-content{
+        flex:1;
+    }
+    
+    .container{
+        margin:10% 20% 10% 20%;
+        display:grid;
+        grid-template-columns:repeat(3, 1fr) ;
+        border:2px solid var(--primary-dark-color);
+        max-width: 100%;
+        max-height: 100%;
+        padding:5px;
+    }
+    
+    .btn{
+
+        padding:15%;
+        margin:3px;
+        border:2px solid var(--primary-color);
+        background-color: var(--primary-dark-color);
+        border-radius: 5px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

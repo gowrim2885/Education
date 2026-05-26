@@ -1,0 +1,32 @@
+@layer responsive {
+    @media(max-width:450px) {
+        header {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .header-left {
+            width: 100%;
+        }
+
+ 
+    }
+
+    @media screen and (max-width: 768px) {
+        .side-bar {
+            left: -250px; 
+        }
+
+        .side-bar.active {
+            left: 0;
+        }
+        
+    }
+
+    @media screen and (min-width: 769px) {
+        .side-bar {
+            left: 0; 
+        }
+    }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        height:150px;
+        width:200px;
+        background-color:beige;
+        text-align: center;
+        font-size:8rem;
+    }
+</style>
+<body>
+    <div id="result">0</div><br><br><br>
+    <button onclick="increaseCount()">Increase</button>
+    <button onclick="decreasCount()">Decrease</button>
+    <button onclick="reset()">Update</button>
+    <button onclick="Savecount()">save</button>
+    <button onclick="loaddata()">Load</button>
+
+</body>
+<script>
+    let count = 0;
+    loaddata();
+    function increaseCount(){
+        count++;
+        updateCount();
+    }
+    function decreasCount(){
+        count--;
+        updateCount();
+    }
+    function updateCount(){
+        document.getElementById("result").innerHTML=count;
+    }
+    function Savecount(){
+        localStorage.setItem("count",count);
+    }
+    function reset(){
+        count = 0;
+    }
+    function loaddata(){
+        let val = localStorage.getItem("count");
+        count = Number(val);
+        updateCount();
+    }
+</script>
+</html>

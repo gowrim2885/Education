@@ -1,0 +1,8 @@
+@layer variable{
+    :root{
+    --primary-color:rgb(59, 58, 61);
+    --secondary-color:rgb(181, 181, 181);
+    --sample-color:rgb(244, 249, 248);
+   
+}
+}

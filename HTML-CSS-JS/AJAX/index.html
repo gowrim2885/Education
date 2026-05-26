@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="change()">Click</button>
+    <div id="container" class="container-style">
+       
+    </div>
+
+
+    <script>
+        let state = "active";
+        const box = document.querySelector("#container");
+        function change(){
+
+            if(state=== "active"){
+                box.innerHTML = `<img src="statrs.png" id="image1" alt="photo1">`;
+
+                state = "inactive";
+            }
+            else{
+                box.innerHTML = `<img src="title_logo.jpg" id="image2" alt="photo2" style= " height:100px;
+        width:100px;">`;
+                state = "active";
+            }
+             
+        }
+       
+    </script>
+   
+</body>
+</html>

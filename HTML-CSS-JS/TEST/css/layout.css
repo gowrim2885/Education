@@ -1,0 +1,50 @@
+@layer layout{
+    *{
+    margin:0px;
+}
+
+body{
+    box-sizing: border-box;
+    width:100%;
+    height:100vh;
+}
+
+header{
+    background-color:var(--primary-color);
+    height:15%;
+    width:100%;
+    position:fixed;
+    z-index:1;
+}
+
+.main{
+    position:absolute;
+    top:15%;
+    display:grid;
+    grid-template-columns:25% 75%;
+    width:100%;
+    height:100vh;
+}
+
+.sidebar{
+    position:relative;
+    background-color: var(--secondary-color);
+    overflow:scroll;
+}
+
+
+.container{
+    display:grid;
+    grid-template-columns:50% 50%;
+    position: absolute;
+    gap:8px;
+}
+
+.card{
+    position: relative;
+    border:0.5px solid gray;
+    border-radius: 5px;
+    margin:10px;
+   
+}
+}

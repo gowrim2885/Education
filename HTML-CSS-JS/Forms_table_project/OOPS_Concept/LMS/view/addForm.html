@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Form</title>
+    <link rel="stylesheet" href="..\assets\style\main.css">
+</head>
+
+<body>
+    <header>
+        <h3>STUDENT MANAGEMENT SYSTEM</h3>
+    </header>
+    <main>
+
+        <div class="nav-btns">
+            <a href="formTableData.html">View Students list</a>
+
+        </div>
+
+        <div class="container">
+            <div class="card" id="main-content">
+                <h2>Add Student</h2>
+            </div>
+            <div class="form-card">
+                <form id="AddUserForm" class="user-form">
+
+                    <label for="stud_id">Student ID</label>
+                    <input type="number" id="stud_id">
+                    <br><br>
+                    <label for="name">Name </label>
+                    <input type="text" id="name" name="Name" placeholder="Enter your FullName" required />
+                    <br><br>
+                    <label for="department">Department</label>
+                    <select name="dept" id="dept">
+                        <option value="" selected disabled> -- select option --</option>
+                        <option value="CSE"> CSE</option>
+                        <option value="IT">IT</option>
+                        <option value="AIDS">AIDS</option>
+                        <option value="ECE">ECE</option>
+                    </select>
+                    <br><br>
+
+                    <label for="Year">Year</label>
+                    <select name="Year" id="year">
+                        <option value="" selected disabled> -- select option --</option>
+                        <option value="IV-year"> IV Year</option>
+                        <option value="III-year">III Year</option>
+                        <option value="II-year ">II Year</option>
+                        <option value="I-year">I Year</option>
+                    </select>
+                    <br><br>
+                    <label for="age">Age </label>
+                    <input type="number" id="age" name="Age" required>
+                    <br><br>
+                    <label> Gender </label><br>
+                    <input type="radio" id="female" value="female" name="Gender">
+                    <label for="female">Female</label>
+                    <input type="radio" id="male" value="male" name="Gender">
+                    <label for="male">Male</label>
+                    <br>
+                    <br>
+                    <label>Select subject</label><br>
+                    <input type="checkbox" id="phy" name="subject" value="Physics" class="checkbox">
+                    <label for="phy">Physics</label><br>
+                    <input type="checkbox" id="math" name="subject" value="Maths" class="checkbox">
+                    <label for="math">Maths</label><br>
+                    <input type="checkbox" id="chem" name="subject" value="Chemistry" class="checkbox">
+                    <label for="chem">Chemistry</label><br>
+                    <input type="checkbox" id="cs" name="subject" value="Computer Science" class="checkbox">
+                    <label for="cs">Computer Science</label><br>
+                    <br>
+                    <button id="submitStudentForm">Add</button>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="..\assets\script\data\dataContext.js"></script>
+    <script src="..\assets\script\logic\models\students.js"></script>
+    <script src="..\assets\script\logic\services\studentServices.js"></script>
+
+
+    <script src="..\assets\script\DOM\StudentFormDomManipulation.js"></script>
+    <script src="..\assets\script\DOM\StudentsTableDomManipulation.js"></script>
+
+</body>
+
+</html>

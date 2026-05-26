@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>My Application Controls</title>
+    <link rel="stylesheet" href="../css/main.css" />
+
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <button type="button" class="toggle-sidebar-btn" onclick="toggleNav()"><img src="../images/menu.png" alt="menu" id="menu-side-bar-img"></button>
+
+            <!--<a href="#Side-Bar"><img src="../images/menu.png" alt="menu" id="menu-side-bar-img"></a>-->
+            <h1>My Application </h1>
+        </div>
+        <div class="header-right">
+            <!--<a href="#" class="profile"><img src="../images/profile_icon.jfif" alt="profile" /></a>-->
+            <button type="button" class="prof-btn" onclick="showProfile()"><img src="../images/profile_icon.jfif" alt="profile" /></button>
+            <div class="profile-menu" id="Profile-Menu">
+                <ul>
+                    <li>User Name</li>
+                    <li> User@gmail.com</li>
+                    <li>set up new profile</li>
+                    <li>Other profile</li>
+                    <li>Setting</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="side-bar" id="Side-Bar">
+            <nav>
+                <h3>MAIN MENU</h3>
+                <a href="#dashboard">Dashboard</a>
+                <select name="products" id="products" class="dropdown">
+                    <option disabled selected hidden>products</option>
+                    <option value="details">Details</option>
+                    <option value="description">description</option>
+                </select>
+                <select name="orders" id="orders" class="dropdown">
+                    <option disbled selected hidden>Orders</option>
+                    <option value="order_details">order details</option>
+                    <option value="analysis">Analysis</option>
+                    <option value="date_time">date and time</option>
+                </select>
+                <a href="#Orders">Orders</a>
+                <a href="#Settings">SETTINGS</a>
+                <a href="#General">General</a>
+                <a href="#users">Users</a>
+            </nav>
+        </div>
+
+
+        <div class="container">
+            <!--User list-->
+            <div class="card">
+                <div class="card-head">
+                    <h3>User List</h3>
+                </div>
+                <div class="card-data">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>John Doe</td>
+                                <td>john@example.com</td>
+                                <td>Active</td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>Jane Smith</td>
+                                <td>jane@example.com</td>
+                                <td>Active</td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td>Bob Johnson</td>
+                                <td>bob@example.com</td>
+                                <td>Inactive</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--Add New User-->
+            <div class="card">
+                <div class="card-head">
+                    <h3>Add New User</h3>
+                </div>
+                <div class="card-data">
+                    <form action="server.php" method="get" id="userForm">
+                        <label for="fname">Full Name</label><br />
+                        <input type="text" id="fname" name="name" title="fullname" class="form-field" required /><br />
+
+                        <label for="email">Email</label><br />
+                        <input type="email" id="email" name="email" title="email" class="form-field" required /><br />
+
+                        <label for="role">Role</label><br />
+                        <select name="role" class="form-field" id="role" required>
+                            <option value="admin" selected>Admin</option>
+                            <option value="teamlead">Team Lead</option>
+                            <option value="employee">Employee</option>
+                        </select><br />
+
+                        <label for="dob">Birth Date</label><br />
+                        <input type="date" id="dob" name="birth_date" class="form-field" /><br />
+
+                        <label for="prof-pic">Profile Picture</label><br />
+                        <input type="file" id="prof-pic" class="form-field" /><br />
+
+                        <input type="checkbox" id="check" name="check" class="form-field-select" />
+                        <label for="check">Send Welcome email</label><br />
+                        <br />
+
+                        <label for="status" id="status" required>Status</label><br />
+                        <input type="radio" id="active" value="active" name="status" class="form-field-select" />
+                        <label for="active" class="form-field-select">Active</label><br />
+                        <input type="radio" id="inactive" value="inactive" name="status" class="form-field-select" />
+                        <label for="inactive" class="form-field-select">Inactive</label><br />
+                        <br />
+                        <label class="toggle" for="toggle-switch">Enable Notiifivation </label><br />
+                        <div class="toggle-btn" id="toggle-switch" onclick="this.classList.toggle('active')">
+                            <div class="square"></div>
+                        </div>
+
+
+                        <br />
+                        <label for="notes" value="notes">Notes</label><br />
+                        <textarea id="notes" name="notes" rows="3" cols="30" class="form-field" placeholder="Enter notes"></textarea><br />
+
+                        <button type="submit" id="submit-btn">Save User</button>
+                        <button type="reset" id="reset-btn">Cancel</button>
+                    </form>
+
+
+
+                </div>
+            </div>
+
+            <!--UI Componants-->
+            <div class="card">
+                <div class="card-head">
+                    <h3>UI Components</h3>
+                </div>
+                <div class="card-data">
+                    <p> Alerts</p><br />
+                    <div class="alert-section" id="alert-box"> </div>
+                    <hr /><br />
+                    <p> Buttons & Tags</p><br />
+                    <button type="button" class="btn-primary alert-default" onclick="alertButton('default')"> Default </button>
+                    <button type="button" class="btn-primary alert-info" onclick="alertButton('info')">Primary</button>
+                    <button type="button" class="btn-primary alert-success" onclick="alertButton('success')">Success</button>
+                    <button type="button" class="btn-primary alert-warning" onclick="alertButton('warning')">Warning</button>
+                    <button type="button" class="btn-primary alert-error" onclick="alertButton('error')">Error</button>
+                    <br />
+
+                    <button type="button" class="btn-primary" onclick="alert('you click a javascript button')">JavaScript</button>
+                    <button type="button" class="btn-primary" onclick="alert('you click a React button')">React</button>
+                    <button type="button" class="btn-primary" onclick="alert('you click a CSS button')">CSS</button>
+                    <hr /><br />
+
+                    <label>Progress Bar </label>
+                    <progress id="progress-bar" max="100" value="75" class="form-field"></progress>
+                    <hr><br />
+
+                    <h3>Spinners</h3>
+                    <div class="spin-container">
+                        <div class="small-spinner">
+
+                        </div>
+                        <div class="big-spinner">
+
+                        </div>
+                    </div>
+                    <br /><hr><br />
+
+                    <h3>Tooltip</h3>
+                    <div class="tooltip">
+                        <p class="tool-tip">Hover Me</p>
+                        <span class="tool-tip-text"><b>Tool Tip Working Properly</b></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--Tabbed content-->
+            <div class="card">
+                <div class="card-head">
+                    <h3>Tabbed Content</h3>
+                </div>
+                <div class="tabbed-options">
+                    <button class="tab-btn" onclick="tabs('overview')">Overview</button>
+                    <button class="tab-btn" onclick="tabs('setting')">Setting</button>
+                    <button class="tab-btn" onclick="tabs('detail')">Detail</button>
+                    <div id="demo"></div>
+                </div>
+            </div>
+
+            <!--Accordation-->
+            <div class="card">
+                <div class="card-head">
+                    <h3>Accordion</h3>
+                </div>
+                <div class="card-data">
+                    <button class="accordion">Section 1</button>
+                    <div class="panel">
+                        <p> this panel contain section 1 datas.Content for Section1, This can contain any HTML elements. </p>
+                    </div>
+
+                    <button class="accordion">Section 2</button>
+                    <div class="panel">
+                        <p> this panel contain section 2 datas.Content for Section2, This can contain any CSS elements </p>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!--Recent Activity-->
+            <div class="card">
+                <div class="card-head">
+                    <h3>Recent Activity</h3>
+                </div>
+                <div class="card-data">
+                    <table style="text-align:left;">
+                        <tr><td>User John Doe logged in</td></tr>
+                        <tr><td>New order #1234 received</td></tr>
+                        <tr><td>Product inventory updated</td></tr>
+                        <tr><td>System backup completed</td></tr>
+                    </table>
+
+                </div>
+            </div>
+
+            <!--Settings panel-->
+            <div class="card">
+                <div class="card-head">
+                    <h3>Recent Activity</h3>
+                </div>
+                <div class="card-data">
+                    <table style="text-align:left;">
+                        <tr><td>User John Doe logged in</td></tr>
+                        <tr><td>New order #1234 received</td></tr>
+                        <tr><td>Product inventory updated</td></tr>
+                        <tr><td>System backup completed</td></tr>
+                    </table>
+
+                </div>
+            </div>
+
+            <!--Products-->
+            <div class="card">
+                <div class="card-head">
+                    <h3>Products</h3>
+                </div>
+                <div class="card-data">
+
+                    <div class="product-card">
+                        <button type="button" class="add-pr"> Add Product </button>
+                        <button type="button">Export </button>
+                        <input type="search" />
+                    </div>
+                </div>
+
+                <div class="card-head">
+                    <h3> Pagination</h3>
+                </div>
+                <div class="card-data">
+                    <ul class="pg-position">
+                        <li><a href="#prev" id="prev">Prev</a></li>
+                        <li><a href="#1" onclick="updateButtons('page1')">1</a></li>
+                        <li><a href="#2">2</a></li>
+                        <li><a href="#3">3</a></li>
+                        <li><a href="#4">4</a></li>
+                        <li><a href="#5">5</a></li>
+                        <li><a href="#6" onclick="updateButtons('page6')">6</a></li>
+                        <li><a href="#next" id="next">Next</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/script.js"></script>
+
+
+</body>
+
+</html>

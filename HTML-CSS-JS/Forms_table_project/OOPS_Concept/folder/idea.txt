@@ -1,0 +1,21 @@
+Class : Table
+	Display_Student_Details()
+
+Class : Form
+	Get_Form_Data()
+
+Class  : student
+   constructor:
+	stud_id
+	stud_name
+	stud_Department
+	stud_year
+	stud_age
+	stud_subject
+	stud_gender
+
+	
+   methods():
+	get_Student_Data()
+	set_Student_Data()
+

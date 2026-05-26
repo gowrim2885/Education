@@ -1,0 +1,44 @@
+
+.container {
+border: 2px solid black;
+display: flex;
+flex-direction: column;
+width: fit-content;
+}
+
+.row-style {
+display: flex;
+flex-direction: row;
+}
+
+.cell-style {
+height: 60px;
+width: 60px;
+border: 2px solid black;
+
+}
+
+.cell-blackcolor {
+background-color: black;
+}
+
+.cell-whitecolor {
+background-color: white;
+}
+
+.upsideindex {
+justify-content: center;
+align-content: center;
+height: 25px;
+width: 60px;
+border: none;
+
+}
+
+.leftsideindex {
+text-align: center;
+align-content: center;
+width: 25px;
+height: 60px;
+border: none;
+}

@@ -1,0 +1,104 @@
+@layer style{
+    header > h2{
+    color: var(--sample-color);
+    text-align: center;
+    margin-top:20px;
+    font-size:large;
+    font-weight: bold;
+}
+
+
+.sidebar nav ul li{
+    list-style: none;
+    background-color: white;
+    padding:10px;
+    border:2px solid gray;
+    max-width:100%;
+    
+}
+.sidebar nav ul{
+    padding: 4px;
+}
+
+/* ===========CARD DESIGN============== */
+
+.prod-image{
+    margin:10px;
+    padding: 20px;
+    border:3px solid var(--primary-color);
+}
+
+.prod-image img{
+    height:180px;
+    width:95%;
+    padding:5px;
+} 
+
+.prod-data{
+    margin:10px;
+}
+
+.prod-data > h3,p{
+    font-size:1rem;
+    padding:5px;
+}
+.card p{
+    font-size: small;
+}
+
+h3 + p{
+    font-style: oblique;
+}
+
+.prod-price{
+    display:flex;
+    justify-content: flex-end;
+    margin:5px;
+    color:var(--primary-color);
+}
+.prod-price a{
+    text-decoration: none;
+    background-color:var(--primary-color);
+    color:white;
+    margin:5px;
+    padding: 5px;
+}
+
+.prod-price h5{
+    background-color:red;
+    color:white;
+    margin:5px;
+    padding: 5px;
+}
+
+.prod-price> h2{
+    color:var(--primary-color);
+    font-size: large;
+    font-weight: bold;
+    margin:5px;
+    padding: 5px;
+}
+
+
+@media (max-width:750px){
+    .container{
+        display:flex;
+        flex-direction: column;
+        position: absolute;
+        gap:8px;
+    }
+    main{
+        display:flex;
+        flex-direction: column;
+    }
+    
+    .sidebar nav ul{
+        display: flex;
+        flex-direction:row;
+        position: sticky;
+    }
+}
+
+
+
+}

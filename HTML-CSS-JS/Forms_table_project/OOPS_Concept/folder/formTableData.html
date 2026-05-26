@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Form</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <header>
+        <h3>STUDENT MANAGEMENT SYSTEM</h3>
+    </header>
+    <main>
+
+        <div class="nav-btns">
+            <a href="addForm.html">Add Student </a>
+            <a id="sortaz">Sort Az</a>
+            <a id="sortza">Sort ZA </a>
+
+        </div>
+        
+        <div class="container">
+             <div class="card" id="main-content" >
+             <input type="text" id="search-data"><br>
+
+                <h2>Student Details</h2>
+                <table id="myTable" class="mytable">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Department</th>
+                            <th>Year</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Subjects</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Table-body">
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script src = "main.js"></script>
+<script src = "student.js"></script>
+<script src="form.js"></script>
+</body>
+</html>
+
+
+ 

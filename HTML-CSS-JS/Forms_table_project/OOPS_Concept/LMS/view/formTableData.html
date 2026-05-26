@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Form</title>
+    <link rel="stylesheet" href="..\assets\style\main.css">
+</head>
+
+<body>
+    <header>
+        <h3>STUDENT MANAGEMENT SYSTEM</h3>
+    </header>
+    <main>
+
+        <div class="nav-btns">
+            <button id="add_Student">Add Student </button>
+            <!-- <a href="addForm.html" id="Add_StudentForm_Details">Add Student </a> -->
+            <button id="sortaz">Sort Az</button>
+            <button id="sortza">Sort ZA </button>
+
+        </div>
+
+        <div class="container">
+            <div class="card" id="main-content">
+                <!-- <input type="text" id="search-data"><br> -->
+
+                <h2>Student Details</h2>
+                <table id="myTable" class="mytable">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Department</th>
+                            <th>Year</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Subjects</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <script src="..\assets\script\data\dataContext.js"></script>
+    <script src="..\assets\script\logic\models\students.js"></script>
+    <script src="..\assets\script\logic\services\studentServices.js"></script>
+
+
+    <script src="..\assets\script\DOM\StudentFormDomManipulation.js"></script>
+    <script src="..\assets\script\DOM\StudentsTableDomManipulation.js"></script>
+
+</body>
+
+</html>

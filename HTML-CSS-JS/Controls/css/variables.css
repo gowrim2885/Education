@@ -1,0 +1,11 @@
+@layer variables {
+    :root {
+        --primary-color: #f8f7fa;
+        --secondary-color: #dad9db;
+        --text-color: #333232;
+        --primary-button-color: #0465ba;
+        --font-style: Arial, Helvetica, sans-serif;
+        --font-size: 0.8rem;
+    }
+}
+

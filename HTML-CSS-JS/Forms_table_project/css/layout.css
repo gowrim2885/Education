@@ -1,0 +1,49 @@
+@layer layout{
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    width:100%;
+    height:100vh;
+}
+
+header{
+    height:10%;
+    background-color: black;
+}
+
+main{
+    display:flex;
+    flex-direction: column;
+    background-color:blanchedalmond;
+}
+
+.nav-btns{
+    background-color: brown;
+    height:10%;
+    display:flex;
+    justify-content: space-around;
+}
+
+.card{
+    margin: 50px;
+    padding:10px;
+}
+
+
+.form-card{
+    margin:50px 50px 50px 50px;
+    font-size: 1rem;
+    border: 2px solid gray;
+    background-color: rgb(245, 248, 232);
+}
+
+.user-form{
+    margin: 50px;;
+}
+
+}
