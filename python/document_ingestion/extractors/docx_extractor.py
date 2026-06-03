@@ -14,7 +14,7 @@ from models.document_schema import (
 
 from storage.asset_manager import AssetManager
 from utils.metadata_utils import extract_basic_metadata
-
+from docx.oxml.ns import qn
 
 class DOCXExtractor:
 
@@ -183,37 +183,75 @@ class DOCXExtractor:
     # -------------------------
     # LINK EXTRACTION
     # -------------------------
+
+
     def extract_links(self, doc):
 
         links = []
 
         idx = 0
 
-        for para in doc.paragraphs:
+        try:
 
-            for run in para.runs:
+            for para in doc.paragraphs:
 
-                if run.hyperlink is None:
-                    continue
+                paragraph_element = para._element
 
-                try:
+                for child in paragraph_element:
 
-                    links.append(
-                        LinkAsset(
-                            asset_id=f"link_{idx}",
-                            asset_type="hyperlink",
-                            uri=run.hyperlink.target_ref,
-                            text=run.text,
-                            page_number=1,
-                            metadata={
-                                "source": "docx_link"
-                            }
-                        )
+                    if not child.tag.endswith("hyperlink"):
+                        continue
+
+                    rel_id = child.get(
+                        qn("r:id")
                     )
 
-                    idx += 1
+                    if not rel_id:
+                        continue
 
-                except Exception:
-                    pass
+                    try:
+
+                        rel = doc.part.rels[rel_id]
+
+                        url = rel.target_ref
+
+                        text_parts = []
+
+                        for elem in child.iter():
+
+                            if elem.text:
+                                text_parts.append(
+                                    elem.text
+                                )
+
+                        link_text = " ".join(
+                            text_parts
+                        ).strip()
+
+                        links.append(
+                            LinkAsset(
+                                asset_id=f"link_{idx}",
+                                asset_type="hyperlink",
+                                uri=url,
+                                text=link_text,
+                                page_number=1,
+                                metadata={
+                                    "source": "docx_link"
+                                }
+                            )
+                        )
+
+                        idx += 1
+
+                    except Exception as ex:
+                        print(
+                            f"Link parse error: {ex}"
+                        )
+
+        except Exception as ex:
+
+            print(
+                f"Hyperlink extraction error: {ex}"
+            )
 
         return links

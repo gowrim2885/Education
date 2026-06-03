@@ -23,6 +23,20 @@ class TextAsset(Asset):
     text: str = ""
     page_number: int = None
 
+    bbox: list = field(default_factory=list)
+
+    font_name: str = ""
+    font_size: float = 0
+
+    is_bold: bool = False
+    is_italic: bool = False
+
+    heading_level: int = 0
+
+    block_number: int = -1
+    line_number: int = -1
+    span_number: int = -1
+
 
 # --------------------------------------------------
 # TABLE ASSET
@@ -90,3 +104,15 @@ class LinkAsset(Asset):
     text: str = ""
     page_number: int = None
     bbox: list = field(default_factory=list)
+
+
+@dataclass
+class AnnotationAsset(Asset):
+    annotation_type: str = ""
+    content: str = ""
+    page_number: int = None
+
+@dataclass
+class AttachmentAsset(Asset):
+    filename: str = ""
+    filepath: str = ""

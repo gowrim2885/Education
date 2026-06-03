@@ -6,6 +6,7 @@ from extractors.pdf_extractor import PDFExtractor
 from extractors.docx_extractor import DOCXExtractor
 from extractors.txt_extractor import TXTExtractor
 from extractors.pptx_extractor import PPTXExtractor
+from extractors.img_extractor import ImageExtractor
 
 
 def get_extractor(file_path):
@@ -25,6 +26,9 @@ def get_extractor(file_path):
         return TXTExtractor()
     elif ext == ".pptx":
         return PPTXExtractor()
+    elif ext in [".jpg", ".jpeg", ".png", ".bmp", ".tiff"]:
+        from extractors.img_extractor import ImageExtractor
+        return ImageExtractor()
     else:
         raise ValueError(f"Unsupported file type: {ext}")
 
