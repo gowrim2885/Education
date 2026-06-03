@@ -1,5 +1,16 @@
 <Solution>
+  <Folder Name="/ASPWebForms/">
+    <Project Path="ASPWebForms/ASPWebFormStudentManagementSystem/ASPWebFormStudentManagementSystem.csproj" Id="6b194898-2b9b-4123-8f13-ea4fa760d2b1">
+      <BuildType Project="Debug" />
+    </Project>
+    <Project Path="ASPWebForms/Controls/Controls.csproj" Id="7f0c818d-2bc5-459e-b70f-fb68c6b813e7" />
+  </Folder>
+
   <Folder Name="/ConsolePractice/">
-    <Project Path="../../Repositories/CSharpPractice/gowrim2885/CSharpPractice/cSharpPractice/ConsoleClassLab/CSharpBasics.csproj" />
+    <Project Path="ConsoleClassLab/CSharpBasics.csproj" />
+  </Folder>
+
+  <Folder Name="/EmployeeManagementSystem/">
+    <Project Path="EmployeeManagementSystem/EmployeeManagementSystem.csproj" />
   </Folder>
 </Solution>

@@ -1,0 +1,62 @@
+﻿body {
+    box-sizing: border-box;
+}
+
+.card {
+    border: 2px solid black;
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: auto auto;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgb(0, 19, 77);
+}
+
+    .card section {
+        padding: 20px;
+        margin: 20px 20px;
+        border: 7px solid;
+        border-radius: 10px;
+        box-shadow: 4px 4px 10px rgb(0, 19, 77);
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        justify-content: center;
+    }
+
+
+        .card section label {
+            padding: 5px;
+            margin: 5px;
+            text-align: center;
+        }
+
+        .card section input {
+            background-color: aliceblue;
+            font-size: 25px;
+            padding: 5px;
+            margin: 5px;
+            border: none;
+            text-align: center;
+            justify-content: center;
+        }
+
+
+.chartstyle {
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+/*    height: 420px;
+    width: 620px;*/
+    padding: 10px;
+    margin-top:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.charttitle {
+    text-align:center;
+    font-weight:bold;
+    font-size:large;
+    padding:25px;
+}

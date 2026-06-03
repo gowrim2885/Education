@@ -1,0 +1,47 @@
+[
+  {
+    "HistoryId": 1,
+    "EmployeeId": 1,
+    "Action": "ADD",
+    "Timestamp": "2026-03-05T17:51:09.6245022+05:30",
+    "Version": 1,
+    "OldValue": null,
+    "NewValue": "{\u0022id\u0022:1,\u0022name\u0022:\u0022Aarthi\u0022,\u0022department\u0022:\u0022CSE\u0022,\u0022email\u0022:\u0022gowri@gmail.com\u0022,\u0022salary\u0022:100000,\u0022age\u0022:21,\u0022location\u0022:\u0022Theni\u0022}"
+  },
+  {
+    "HistoryId": 2,
+    "EmployeeId": 2,
+    "Action": "ADD",
+    "Timestamp": "2026-03-05T17:51:40.0049225+05:30",
+    "Version": 1,
+    "OldValue": null,
+    "NewValue": "{\u0022id\u0022:2,\u0022name\u0022:\u0022kala\u0022,\u0022department\u0022:\u0022cse\u0022,\u0022email\u0022:\u0022kala@gmail.com\u0022,\u0022salary\u0022:5000000,\u0022age\u0022:22,\u0022location\u0022:\u0022madhurai\u0022}"
+  },
+  {
+    "HistoryId": 3,
+    "EmployeeId": 14,
+    "Action": "ADD",
+    "Timestamp": "2026-03-05T17:52:12.0405134+05:30",
+    "Version": 1,
+    "OldValue": null,
+    "NewValue": "{\u0022id\u0022:14,\u0022name\u0022:\u0022gowri\u0022,\u0022department\u0022:\u0022cse\u0022,\u0022email\u0022:\u0022gowri@gmail.com\u0022,\u0022salary\u0022:20000000,\u0022age\u0022:21,\u0022location\u0022:\u0022chennai\u0022}"
+  },
+  {
+    "HistoryId": 4,
+    "EmployeeId": 14,
+    "Action": "UPDATE",
+    "Timestamp": "2026-03-05T17:52:51.7417438+05:30",
+    "Version": 2,
+    "OldValue": "{\u0022id\u0022:14,\u0022name\u0022:\u0022gowri\u0022,\u0022department\u0022:\u0022cse\u0022,\u0022email\u0022:\u0022gowri@gmail.com\u0022,\u0022salary\u0022:20000000,\u0022age\u0022:21,\u0022location\u0022:\u0022chennai\u0022}",
+    "NewValue": "{\u0022id\u0022:14,\u0022name\u0022:\u0022Gowri\u0022,\u0022department\u0022:\u0022CSE\u0022,\u0022email\u0022:\u0022gowri@gmail.com\u0022,\u0022salary\u0022:120000000,\u0022age\u0022:20,\u0022location\u0022:\u0022Theni\u0022}"
+  },
+  {
+    "HistoryId": 5,
+    "EmployeeId": 1,
+    "Action": "ADD",
+    "Timestamp": "2026-05-26T15:56:20.1081574+05:30",
+    "Version": 2,
+    "OldValue": null,
+    "NewValue": "{\u0022id\u0022:1,\u0022name\u0022:\u0022aaaaa\u0022,\u0022department\u0022:\u0022aa\u0022,\u0022email\u0022:\u0022aaaa@gmail.com\u0022,\u0022salary\u0022:1000000,\u0022age\u0022:21,\u0022location\u0022:\u0022theni\u0022}"
+  }
+]

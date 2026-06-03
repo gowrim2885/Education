@@ -1,0 +1,48 @@
+﻿
+/*DisplayPage.aspx*/
+.Student-grid {
+    background-color: black;
+    max-width: 100%;
+}
+
+    .Student-grid th {
+        background-color: #043d66;
+        color: white;
+        
+    }
+
+    .Student-grid td{
+        background-color:ghostwhite;
+    }
+
+    .Student-grid th, td {
+        border: 2px solid black;
+        border-collapse: collapse;
+        padding: 15px;
+    }
+
+.editButton {
+    background-color: rgb(140, 217, 179);
+    padding: 10px;
+    margin: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.DeleteButton {
+    background-color: rgb(255, 128, 128);
+    color: black;
+    padding: 10px;
+    margin: 10px;
+    text-decoration: none;
+}
+
+    .editButton:hover .DeleteButton:hover {
+        background-color: black;
+        color: white;
+    }
+
+
+.Links{
+    font-weight:bold;
+}

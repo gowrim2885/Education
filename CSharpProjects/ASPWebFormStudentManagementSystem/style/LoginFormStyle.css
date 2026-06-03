@@ -1,0 +1,63 @@
+﻿body {
+    margin:0;
+    padding:0;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.form {
+    background-color: rgb(204, 229, 255);
+    height: 100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+#header {
+    padding:30px;
+    background-color: #043d66;
+    color: #FFFFFF;
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: Candara;
+    z-index: 1;
+    text-align: center;
+}
+
+
+.container {
+    flex: 1;
+    background-color: rgba(0, 184, 230,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table {
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 5px;
+}
+
+
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input, .ddlRolestyle {
+    padding: 15px;
+    font-size: 14px;
+    margin: 10px;
+}
+
+.btn {
+    padding: 8px;
+    margin:5px 5px 5px 5px;
+    cursor: pointer;
+}
