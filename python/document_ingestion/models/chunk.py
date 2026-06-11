@@ -6,5 +6,8 @@ class Chunk:
     chunk_index: int
     text: str
     source_file: str
+    asset_type: str = ""
+    page_number: int = 0
+    heading: str = ""
 
 

@@ -42,7 +42,7 @@ def main(file_path):
         document = extractor.extract(file_path)
 
         #chunking
-        chunk_service = ChunkService(mode="fixed")
+        chunk_service = ChunkService(mode="recursive")
         chunks = chunk_service.process(document)
         #create chunk output file and open
         chunk_output_file = (

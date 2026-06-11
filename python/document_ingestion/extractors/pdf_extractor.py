@@ -1,4 +1,5 @@
 import io
+import os
 import fitz
 import pdfplumber
 
@@ -24,7 +25,7 @@ class PDFExtractor:
 
     def extract(self, pdf_path):
         document = DocumentSchema.create(
-            file_name=pdf_path.split("/")[-1],
+            file_name=os.path.basename(pdf_path),
             file_type="pdf"
         )
 
@@ -44,70 +45,38 @@ class PDFExtractor:
                     # TEXT EXTRACTION
                     # ------------------------
 
-                    page_text = self.extract_text(
-                        pdf_page,
-                        page_number
-                    )
-
-                    if page_text:
-                        page_obj.assets.append( page_text)
-                        full_text.append(page_text.text)
+                    text_assets = self.extract_text(pdf_page, page_number)
+                    page_obj.assets.extend(text_assets)
+                    for asset in text_assets:
+                        full_text.append(asset.text)
 
                     # ------------------------
                     # TABLE EXTRACTION
                     # ------------------------
 
-                    tables = self.extract_tables(
-                        plumber_page,
-                        page_number
-                    )
+                    tables = self.extract_tables(plumber_page,page_number)
 
-                    page_obj.assets.extend(
-                        tables
-                    )
+                    page_obj.assets.extend(tables)
 
                     # ------------------------
                     # IMAGE EXTRACTION
                     # ------------------------
 
-                    images = self.extract_images(
-                        pdf_doc,
-                        pdf_page,
-                        page_number
-                    )
-
-                    page_obj.assets.extend(
-                        images
-                    )
+                    images = self.extract_images(pdf_doc,pdf_page,page_number)
+                    page_obj.assets.extend(images)
 
                     # ------------------------
                     # PAGE OCR FALLBACK
                     # ------------------------
-
-                    if not page_text:
-
-                        ocr_asset = (
-                            self.perform_page_ocr(
-                                pdf_page,
-                                page_number
-                            )
-                        )
-
+                    page_has_text =  len(text_assets) > 0
+                    if not page_has_text:
+                        ocr_asset = (self.perform_page_ocr(pdf_page,page_number))
                         if ocr_asset:
+                            page_obj.assets.append(ocr_asset)
+                            full_text.append(ocr_asset.text)
+                    document.pages.append(page_obj)
 
-                            page_obj.assets.append(
-                                ocr_asset
-                            )
-
-                            full_text.append(
-                                ocr_asset.text
-                            )
-
-                    document.pages.append(
-                        page_obj
-                    )
-
-        raw_text = "/n".join(full_text)
+        raw_text = "\n".join(full_text)
         document.extracted_text = TextCleaner.clean(raw_text)
         document.metadata["headings"] = (StructureDetector.detect_headings(document.extracted_text))
         
@@ -117,22 +86,44 @@ class PDFExtractor:
     # TEXT EXTRACTION
     # ------------------------------------
 
-    def extract_text(self,page,page_number):
+    def extract_text(self, page, page_number):
+        blocks = page.get_text("dict")
+        assets = []
+        block_index = 0
+        for block in blocks["blocks"]:
+            if "lines" not in block:
+                continue
 
-        text = page.get_text("text").strip()
+            for line in block["lines"]:
+                line_text = ""
+                font_size = 0
+                for span in line["spans"]:
+                    line_text += span["text"]
+                    font_size = max(font_size,span["size"])
 
-        if not text:
-            return None
+                line_text = line_text.strip()
+                if not line_text:
+                    continue
+                heading_level = 0
+                if (font_size >= 18):
+                    heading_level = 1
+                elif (font_size >= 16):
+                    heading_level = 2
+                elif (font_size >= 14):
+                    heading_level = 3
+                assets.append(
+                    TextAsset(
+                        asset_id=f"text_{page_number}_{block_index}",
+                        asset_type="text",
+                        text=line_text,
+                        page_number=page_number,
+                        heading_level=heading_level,
+                        font_size=font_size,
+                        metadata={"source": "pdf_text"}
+                    ))
 
-        return TextAsset(
-            asset_id=f"text_{page_number}",
-            asset_type="text",
-            text=text,
-            page_number=page_number,
-            metadata={
-                "source": "pdf_text"
-            }
-        )
+                block_index += 1
+        return assets
 
     # ------------------------------------
     # TABLE EXTRACTION
@@ -141,9 +132,7 @@ class PDFExtractor:
     def extract_tables(self,plumber_page,page_number):
         assets = []
         try:
-            tables = (
-                plumber_page.extract_tables()
-            )
+            tables = (plumber_page.extract_tables())
             for idx, table in enumerate(tables):
                 assets.append(TableAsset(asset_id=(f"table_"f"{page_number}_"f"{idx}"),
                         asset_type="table",
@@ -152,9 +141,7 @@ class PDFExtractor:
                         metadata={
                             "source":
                             "pdf_table"
-                        }
-                    )
-                )
+                        }))
         except Exception as ex:
             print(f"Table Extraction Error:"f" {ex}")
         return assets
@@ -174,8 +161,9 @@ class PDFExtractor:
                 extension = ("."+ base_image.get("ext","png"))
                 image_path = (AssetManager.save_binary(image_bytes,extension))
 
-                ocr_text = perform_ocr(image_path)
-
+                ocr_text = TextCleaner.clean(perform_ocr(image_path))
+                if len(ocr_text.split()) < 5:
+                    continue
                 image_asset = ( ImageAsset(  asset_id=( f"image_"  f"{page_number}_" f"{idx}" ),
                         asset_type="image",
                         image_path=image_path,
@@ -206,7 +194,7 @@ class PDFExtractor:
             pix = page.get_pixmap( matrix=fitz.Matrix(2,2))
             image_bytes = pix.tobytes("png")
             image_path = (AssetManager.save_binary(image_bytes,".png"))
-            ocr_text = perform_ocr(image_path)
+            ocr_text = TextCleaner.clean(perform_ocr(image_path))
 
             if not ocr_text:
                 return None
@@ -216,9 +204,7 @@ class PDFExtractor:
                 asset_type="ocr_text",
                 text=ocr_text,
                 page_number=page_number,
-                metadata={
-                    "source":
-                    "page_ocr"
+                metadata={"source":"page_ocr"
                 }
             )
 

@@ -44,6 +44,7 @@ class TextAsset(Asset):
 
 @dataclass
 class TableAsset(Asset):
+    title: str = ""
     rows: List[List[str]] = field(default_factory=list)
     page_number: int = None
 
@@ -57,6 +58,7 @@ class ImageAsset(Asset):
     image_path: str = ""
     page_number: int = None
     ocr_text: str = ""
+    caption: str = ""
 
 
 # --------------------------------------------------

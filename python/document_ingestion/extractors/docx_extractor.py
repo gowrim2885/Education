@@ -4,6 +4,7 @@ from docx import Document
 from models.document_schema import (DocumentSchema, Page, TextAsset, TableAsset, ImageAsset, LinkAsset)
 from storage.asset_manager import AssetManager
 from utils.metadata_utils import extract_basic_metadata
+from utils.ocr_utils import perform_ocr
 from utils.text_cleaner import TextCleaner
 from docx.oxml.ns import qn
 from utils.structure_detector import StructureDetector
@@ -28,7 +29,7 @@ class DOCXExtractor:
 
             style_name = (para.style.name if para.style else "")
 
-            heading_level = self.detect_heading(style_name)
+            heading_level = self.detect_heading(style_name, text)
 
             asset = TextAsset(
                 asset_id=f"para_{para_idx}",
@@ -94,16 +95,15 @@ class DOCXExtractor:
     # -------------------------
     # HEADING DETECTION
     # -------------------------
-    def detect_heading(self, style_name):
+    def detect_heading(self, style_name, text):
+        if style_name:
+            match = re.search(r'heading\s+(\d+)', style_name.lower())
+            if match:
+                return int(match.group(1))
+            
 
-        if not style_name:
-            return 0
-
-        match = re.search(r'heading\s+(\d+)', style_name.lower())
-
-        if match:
-            return int(match.group(1))
-
+        if(len(text) < 80 and not text.endswith(".") and not text.endswith(":")):
+            return 1
         return 0
 
     # -------------------------
@@ -121,11 +121,14 @@ class DOCXExtractor:
             try:
                 img_data = (rels[rel].target_part .blob )
                 path = (AssetManager.save_binary(img_data, os.path.splitext(target)[1]) )
+                ocr_text = perform_ocr(path)
+
                 image_assets.append(
                     ImageAsset(
                         asset_id=f"img_{idx}",
                         asset_type="image",
                         image_path=path,
+                        ocr_text=ocr_text,
                         metadata={
                             "source": "docx_image"
                         }
