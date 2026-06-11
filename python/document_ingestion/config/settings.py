@@ -22,6 +22,7 @@ TABLE_DIR = os.path.join(
 JSON_DIR = os.path.join(
     PROCESSED_DIR,
     "json"
+     
 )
 
 OCR_LANGUAGE = "eng"

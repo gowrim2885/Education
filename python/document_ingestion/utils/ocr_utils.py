@@ -10,11 +10,10 @@ pytesseract.pytesseract.tesseract_cmd = (
     TESSERACT_PATH
 )
 
-
+#Convert image text into machine-readable text.
 def perform_ocr(image_path):
 
     try:
-
         image = Image.open(image_path)
 
         text = pytesseract.image_to_string(
@@ -22,11 +21,8 @@ def perform_ocr(image_path):
             lang=OCR_LANGUAGE,
             config="--psm 6"
         )
-
         return text.strip()
 
     except Exception as ex:
-
         print(f"OCR Error: {ex}")
-
         return ""

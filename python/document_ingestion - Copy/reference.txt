@@ -1,0 +1,6 @@
+Chunking:
+    size : 100
+    overlap : 50
+
+text Extraction:
+    

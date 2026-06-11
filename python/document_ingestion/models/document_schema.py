@@ -23,7 +23,7 @@ class TextAsset(Asset):
     text: str = ""
     page_number: int = None
 
-    bbox: list = field(default_factory=list)
+    bbox: list = field(default_factory=list)#Bounding box [left, top, right, bottom]
 
     font_name: str = ""
     font_size: float = 0

@@ -1,38 +1,20 @@
 import os
-import uuid
-
+import re
 from docx import Document
-
-from models.document_schema import (
-    DocumentSchema,
-    Page,
-    TextAsset,
-    TableAsset,
-    ImageAsset,
-    LinkAsset
-)
-
+from models.document_schema import (DocumentSchema, Page, TextAsset, TableAsset, ImageAsset, LinkAsset)
 from storage.asset_manager import AssetManager
 from utils.metadata_utils import extract_basic_metadata
+from utils.text_cleaner import TextCleaner
 from docx.oxml.ns import qn
+from utils.structure_detector import StructureDetector
 
 class DOCXExtractor:
 
     def extract(self, file_path):
-
         doc = Document(file_path)
-
-        document = DocumentSchema.create(
-            file_name=os.path.basename(file_path),
-            file_type="docx"
-        )
-
-        document.metadata.update(
-            extract_basic_metadata(file_path)
-        )
-
+        document = DocumentSchema.create(file_name=os.path.basename(file_path), file_type="docx")
+        document.metadata.update(extract_basic_metadata(file_path))
         page = Page(page_number=1)
-
         full_text = []
 
         # -------------------------
@@ -44,10 +26,7 @@ class DOCXExtractor:
             if not text:
                 continue
 
-            style_name = (
-                para.style.name
-                if para.style else ""
-            )
+            style_name = (para.style.name if para.style else "")
 
             heading_level = self.detect_heading(style_name)
 
@@ -107,8 +86,9 @@ class DOCXExtractor:
 
         document.pages.append(page)
 
-        document.extracted_text = "\n".join(full_text)
-
+        raw_text = "\n".join(full_text)
+        document.extracted_text = TextCleaner.clean(raw_text)
+        document.metadata["headings"] = (StructureDetector.detect_headings(document.extracted_text))
         return document
 
     # -------------------------
@@ -116,16 +96,13 @@ class DOCXExtractor:
     # -------------------------
     def detect_heading(self, style_name):
 
-        style_name = style_name.lower()
+        if not style_name:
+            return 0
 
-        if "heading 1" in style_name:
-            return 1
+        match = re.search(r'heading\s+(\d+)', style_name.lower())
 
-        if "heading 2" in style_name:
-            return 2
-
-        if "heading 3" in style_name:
-            return 3
+        if match:
+            return int(match.group(1))
 
         return 0
 
@@ -133,35 +110,17 @@ class DOCXExtractor:
     # IMAGE EXTRACTION
     # -------------------------
     def extract_images(self, doc):
-
         image_assets = []
-
         rels = doc.part._rels
-
         idx = 0
-
         for rel in rels:
-
             target = rels[rel].target_ref
-
             if "image" not in target:
                 continue
 
             try:
-
-                img_data = (
-                    rels[rel]
-                    .target_part
-                    .blob
-                )
-
-                path = (
-                    AssetManager.save_binary(
-                        img_data,
-                        ".png"
-                    )
-                )
-
+                img_data = (rels[rel].target_part .blob )
+                path = (AssetManager.save_binary(img_data, os.path.splitext(target)[1]) )
                 image_assets.append(
                     ImageAsset(
                         asset_id=f"img_{idx}",
@@ -186,72 +145,40 @@ class DOCXExtractor:
 
 
     def extract_links(self, doc):
-
         links = []
-
         idx = 0
-
         try:
-
             for para in doc.paragraphs:
-
                 paragraph_element = para._element
-
                 for child in paragraph_element:
-
                     if not child.tag.endswith("hyperlink"):
                         continue
-
-                    rel_id = child.get(
-                        qn("r:id")
-                    )
-
+                    rel_id = child.get(qn("r:id"))
                     if not rel_id:
                         continue
-
                     try:
-
                         rel = doc.part.rels[rel_id]
-
                         url = rel.target_ref
-
                         text_parts = []
 
                         for elem in child.iter():
-
                             if elem.text:
-                                text_parts.append(
-                                    elem.text
-                                )
+                                text_parts.append(elem.text)
 
-                        link_text = " ".join(
-                            text_parts
-                        ).strip()
+                        link_text = " ".join(text_parts).strip()
 
-                        links.append(
-                            LinkAsset(
+                        links.append(LinkAsset(
                                 asset_id=f"link_{idx}",
                                 asset_type="hyperlink",
                                 uri=url,
                                 text=link_text,
                                 page_number=1,
-                                metadata={
-                                    "source": "docx_link"
-                                }
-                            )
-                        )
-
+                                metadata={ "source": "docx_link" } ) )
                         idx += 1
-
                     except Exception as ex:
-                        print(
-                            f"Link parse error: {ex}"
-                        )
+                        print(f"Link parse error: {ex}")
 
         except Exception as ex:
-
-            print(
-                f"Hyperlink extraction error: {ex}"
-            )
+            print( f"Hyperlink extraction error: {ex}")
 
         return links

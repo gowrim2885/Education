@@ -3,7 +3,6 @@ import fitz
 import pdfplumber
 
 from PIL import Image
-
 from models.document_schema import (
     DocumentSchema,
     Page,
@@ -15,7 +14,8 @@ from models.document_schema import (
 from storage.asset_manager import AssetManager
 from utils.metadata_utils import extract_basic_metadata
 from utils.ocr_utils import perform_ocr
-
+from utils.text_cleaner import TextCleaner
+from utils.structure_detector import StructureDetector
 
 class PDFExtractor:
 
@@ -23,35 +23,22 @@ class PDFExtractor:
         pass
 
     def extract(self, pdf_path):
-
         document = DocumentSchema.create(
             file_name=pdf_path.split("/")[-1],
             file_type="pdf"
         )
 
-        document.metadata.update(
-            extract_basic_metadata(pdf_path)
-        )
+        document.metadata.update(extract_basic_metadata(pdf_path))
 
         full_text = []
 
         with fitz.open(pdf_path) as pdf_doc:
-
             with pdfplumber.open(pdf_path) as plumber_doc:
-
                 for page_index in range(len(pdf_doc)):
-
                     page_number = page_index + 1
-
                     pdf_page = pdf_doc[page_index]
-
-                    plumber_page = plumber_doc.pages[
-                        page_index
-                    ]
-
-                    page_obj = Page(
-                        page_number=page_number
-                    )
+                    plumber_page = plumber_doc.pages[page_index]
+                    page_obj = Page( page_number=page_number)
 
                     # ------------------------
                     # TEXT EXTRACTION
@@ -63,14 +50,8 @@ class PDFExtractor:
                     )
 
                     if page_text:
-
-                        page_obj.assets.append(
-                            page_text
-                        )
-
-                        full_text.append(
-                            page_text.text
-                        )
+                        page_obj.assets.append( page_text)
+                        full_text.append(page_text.text)
 
                     # ------------------------
                     # TABLE EXTRACTION
@@ -126,25 +107,19 @@ class PDFExtractor:
                         page_obj
                     )
 
-        document.extracted_text = "\n".join(
-            full_text
-        )
-
+        raw_text = "/n".join(full_text)
+        document.extracted_text = TextCleaner.clean(raw_text)
+        document.metadata["headings"] = (StructureDetector.detect_headings(document.extracted_text))
+        
         return document
 
     # ------------------------------------
     # TEXT EXTRACTION
     # ------------------------------------
 
-    def extract_text(
-        self,
-        page,
-        page_number
-    ):
+    def extract_text(self,page,page_number):
 
-        text = page.get_text(
-            "text"
-        ).strip()
+        text = page.get_text("text").strip()
 
         if not text:
             return None
@@ -163,31 +138,14 @@ class PDFExtractor:
     # TABLE EXTRACTION
     # ------------------------------------
 
-    def extract_tables(
-        self,
-        plumber_page,
-        page_number
-    ):
-
+    def extract_tables(self,plumber_page,page_number):
         assets = []
-
         try:
-
             tables = (
                 plumber_page.extract_tables()
             )
-
-            for idx, table in enumerate(
-                tables
-            ):
-
-                assets.append(
-                    TableAsset(
-                        asset_id=(
-                            f"table_"
-                            f"{page_number}_"
-                            f"{idx}"
-                        ),
+            for idx, table in enumerate(tables):
+                assets.append(TableAsset(asset_id=(f"table_"f"{page_number}_"f"{idx}"),
                         asset_type="table",
                         rows=table,
                         page_number=page_number,
@@ -197,77 +155,28 @@ class PDFExtractor:
                         }
                     )
                 )
-
         except Exception as ex:
-
-            print(
-                f"Table Extraction Error:"
-                f" {ex}"
-            )
-
+            print(f"Table Extraction Error:"f" {ex}")
         return assets
 
     # ------------------------------------
     # IMAGE EXTRACTION
     # ------------------------------------
 
-    def extract_images(
-        self,
-        pdf_doc,
-        page,
-        page_number
-    ):
-
+    def extract_images(self,pdf_doc,page,page_number):
         image_assets = []
-
-        images = page.get_images(
-            full=True
-        )
-
-        for idx, img in enumerate(
-            images
-        ):
-
+        images = page.get_images(full=True)
+        for idx, img in enumerate(images):
             try:
-
                 xref = img[0]
+                base_image = (pdf_doc.extract_image(xref))
+                image_bytes = (base_image["image"])
+                extension = ("."+ base_image.get("ext","png"))
+                image_path = (AssetManager.save_binary(image_bytes,extension))
 
-                base_image = (
-                    pdf_doc.extract_image(
-                        xref
-                    )
-                )
+                ocr_text = perform_ocr(image_path)
 
-                image_bytes = (
-                    base_image["image"]
-                )
-
-                extension = (
-                    "."
-                    + base_image.get(
-                        "ext",
-                        "png"
-                    )
-                )
-
-                image_path = (
-                    AssetManager.save_binary(
-                        image_bytes,
-                        extension
-                    )
-                )
-
-                ocr_text = perform_ocr(
-                    image_path
-                )
-
-                image_asset = (
-                    ImageAsset(
-                        asset_id=(
-                            f"image_"
-                            f"{page_number}_"
-                            f"{idx}"
-                        ),
+                image_asset = ( ImageAsset(  asset_id=( f"image_"  f"{page_number}_" f"{idx}" ),
                         asset_type="image",
                         image_path=image_path,
                         page_number=page_number,
@@ -279,15 +188,11 @@ class PDFExtractor:
                     )
                 )
 
-                image_assets.append(
-                    image_asset
-                )
+                image_assets.append(image_asset)  
 
             except Exception as ex:
 
-                print(
-                    f"Image Error: {ex}"
-                )
+                print(f"Image Error: {ex}")
 
         return image_assets
 
@@ -295,43 +200,19 @@ class PDFExtractor:
     # FULL PAGE OCR
     # ------------------------------------
 
-    def perform_page_ocr(
-        self,
-        page,
-        page_number
-    ):
-
+    def perform_page_ocr(  self, page, page_number):
         try:
 
-            pix = page.get_pixmap(
-                matrix=fitz.Matrix(
-                    2,
-                    2
-                )
-            )
-
-            image_bytes = pix.tobytes(
-                "png"
-            )
-
-            image_path = (
-                AssetManager.save_binary(
-                    image_bytes,
-                    ".png"
-                )
-            )
-
-            ocr_text = perform_ocr(
-                image_path
-            )
+            pix = page.get_pixmap( matrix=fitz.Matrix(2,2))
+            image_bytes = pix.tobytes("png")
+            image_path = (AssetManager.save_binary(image_bytes,".png"))
+            ocr_text = perform_ocr(image_path)
 
             if not ocr_text:
                 return None
 
             return TextAsset(
-                asset_id=(
-                    f"ocr_{page_number}"
-                ),
+                asset_id=(f"ocr_{page_number}"),
                 asset_type="ocr_text",
                 text=ocr_text,
                 page_number=page_number,
@@ -342,9 +223,5 @@ class PDFExtractor:
             )
 
         except Exception as ex:
-
-            print(
-                f"OCR Error: {ex}"
-            )
-
+            print(f"OCR Error: {ex}")
             return None

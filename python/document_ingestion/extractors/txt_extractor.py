@@ -8,7 +8,8 @@ from models.document_schema import (
 )
 
 from utils.metadata_utils import extract_basic_metadata
-
+from utils.text_cleaner import TextCleaner
+from utils.structure_detector import StructureDetector
 
 class TXTExtractor:
 
@@ -65,8 +66,10 @@ class TXTExtractor:
 
         document.pages.append(page)
 
-        document.extracted_text = "\n".join(full_text)
-
+        raw_text = "/n".join(full_text)
+        document.extracted_text = TextCleaner.clean(raw_text)
+        document.metadata["headings"] = (StructureDetector.detect_headings(document.extracted_text))
+        
         return document
 
     # -------------------------

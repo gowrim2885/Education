@@ -1,0 +1,161 @@
+{
+    "document_id": "4559ee00-5aaa-42a0-9ddb-d21992a3566a",
+    "file_name": "AIProject.docx",
+    "asset_count": 21,
+    "assets": [
+        {
+            "asset_id": "para_0",
+            "asset_type": "text",
+            "text": "Artificial intelligence (AI) is the development of computer systems capable of performing tasks that typically require human intelligence, such as learning, problem-solving, and decision-making. It transforms modern life by driving efficiencies across healthcare, education, and business, while simultaneously raising critical ethical, privacy, and employment challenges. [1, 2, 3]"
+        },
+        {
+            "asset_id": "para_1",
+            "asset_type": "text",
+            "text": "The Evolution and Mechanics of AI"
+        },
+        {
+            "asset_id": "para_2",
+            "asset_type": "text",
+            "text": "At its core, AI operates by analyzing vast datasets using algorithms to recognize patterns and make predictions. While early concepts date back to the 1950s, the field exploded in recent years due to massive leaps in computing power and machine learning. Today, systems can process information, understand natural language, and generate original content at a speed and scale that fundamentally redefines how society interacts with technology. [1, 2, 3, 4, 5, 6]"
+        },
+        {
+            "asset_id": "para_3",
+            "asset_type": "text",
+            "text": "Transformative Impacts Across Sectors"
+        },
+        {
+            "asset_id": "para_4",
+            "asset_type": "text",
+            "text": "AI is no longer just science fiction; it is deeply embedded in the fabric of daily life. [1, 2]"
+        },
+        {
+            "asset_id": "para_5",
+            "asset_type": "text",
+            "text": "Healthcare: AI is revolutionizing medicine by accelerating drug discovery, personalizing treatments, and analyzing medical imagery for earlier disease detection."
+        },
+        {
+            "asset_id": "para_6",
+            "asset_type": "text",
+            "text": "Industry & Business: Algorithms detect fraudulent transactions in finance, optimize supply chains, and automate repetitive tasks."
+        },
+        {
+            "asset_id": "para_7",
+            "asset_type": "text",
+            "text": "Daily Life: Virtual assistants, navigation apps, and personalized content recommendation engines are all powered by AI. [1, 2, 3]"
+        },
+        {
+            "asset_id": "para_8",
+            "asset_type": "text",
+            "text": "AI Types by What They Can Do"
+        },
+        {
+            "asset_id": "para_9",
+            "asset_type": "text",
+            "text": "AI Types by How They Work"
+        },
+        {
+            "asset_id": "para_10",
+            "asset_type": "text",
+            "text": "Challenges and Ethical Considerations"
+        },
+        {
+            "asset_id": "para_11",
+            "asset_type": "text",
+            "text": "Despite its immense potential, the rise of AI presents significant societal and ethical challenges. [1, 2]"
+        },
+        {
+            "asset_id": "para_12",
+            "asset_type": "text",
+            "text": "Job Displacement: Automation threatens to replace certain routine and analytical jobs, requiring a major shift in global workforce retraining. [1, 2]"
+        },
+        {
+            "asset_id": "para_13",
+            "asset_type": "text",
+            "text": "Bias and Privacy: Algorithms trained on flawed data can reinforce societal prejudices, and AI systems frequently raise complex data privacy concerns due to the vast amounts of personal information they process. [1, 2]"
+        },
+        {
+            "asset_id": "para_14",
+            "asset_type": "text",
+            "text": "Over-reliance: Blindly trusting algorithmic outputs without human oversight can lead to critical errors. [1]"
+        },
+        {
+            "asset_id": "para_15",
+            "asset_type": "text",
+            "text": "The Path Forward"
+        },
+        {
+            "asset_id": "para_16",
+            "asset_type": "text",
+            "text": "Artificial intelligence is undeniably one of the most consequential technological advancements in human history. To harness its benefits, society must implement robust ethical frameworks, prioritize transparent development, and address workforce transitions proactively. When developed and deployed responsibly, AI has the power to solve complex global problems, elevate human potential, and build a more efficient future"
+        },
+        {
+            "asset_id": "table_0",
+            "asset_type": "table",
+            "table": [
+                [
+                    "Type of AI",
+                    "What It Does",
+                    "Can It Do It Now?"
+                ],
+                [
+                    "Narrow AI",
+                    "Does one specific job very well.",
+                    "Yes. (Siri, Alexa, and chess games)"
+                ],
+                [
+                    "General AI",
+                    "Thinks and learns just like a human.",
+                    "No. (Still being researched)"
+                ],
+                [
+                    "Super AI",
+                    "Smarter than all humans combined.",
+                    "No. (Only an idea for the future)"
+                ]
+            ]
+        },
+        {
+            "asset_id": "table_1",
+            "asset_type": "table",
+            "table": [
+                [
+                    "Type of",
+                    "How It Works",
+                    "Can It Do It Now?"
+                ],
+                [
+                    "Reactive Machines",
+                    "Only looks at right now. It has no memory.",
+                    "Yes. (Old chess computers)"
+                ],
+                [
+                    "Limited Memory",
+                    "Uses past data to make choices.",
+                    "Yes. (Self-driving cars and chatbots)"
+                ],
+                [
+                    "Theory of Mind",
+                    "Understands human feelings and thoughts.",
+                    "No. (Still being researched)"
+                ],
+                [
+                    "Self-Aware AI",
+                    "Has its own feelings and knows it is alive.",
+                    "No. (Only an idea for the future)"
+                ]
+            ]
+        },
+        {
+            "asset_id": "img_0",
+            "asset_type": "image",
+            "image_path": "Extracted_Images\\image1.png",
+            "ocr_text": "Message Broker\n\nUpload Page |_| HR Rav\nt (Validation) Upload Controller al - \u2014> Queue Queue\na | : ;\n,\u2014\n\n|\n\noO Status . Blob Storage Service File Bete Pile Fateh\n( \u2018s ) Dashboard Azurite | i ;\nBlob Storage iy\n\n| Text Text\n\nUser Y Chunking Chunking\n- yo \u00a5\n\u2014 Fetch Status \u2014\u2014\u2014\u2014> [i Rabbit 1, Generate Generate\nPublisher | Embeddings Embeddings\n\n. \u2014\u2014E Update & Update\n&\u00ae Azurite Blob Storage Status\nDocument Files\n(PDF, DOCX, TXT)\nS Metadata Records + Update Processing Status\n\n"
+        },
+        {
+            "asset_id": "img_1",
+            "asset_type": "image",
+            "image_path": "Extracted_Images\\image2.png",
+            "ocr_text": "\u00a9 Most Common Blazor Event Handlers\n\nHTML Event Blazor Directive Trigger\nonclick @onclick Button clicked\nonchange @onchange Input value changed\noninput G@oninput User typing\nonkeydown G@onkeydoun Key pressed\nonsubmit Gonsubmit Form submitted\nonmouseover: @onmouseover Hover event\nonblur @onblur Lost focus\n\nBlazor supports ALL HTML DOM events through C#.\n"
+        }
+    ]
+}

@@ -8,7 +8,7 @@ ensure_directory(IMAGE_DIR)
 
 
 class AssetManager:
-
+    #store the image in the asset directory and return the path
     @staticmethod
     def generate_image_name(extension=".png"):
 

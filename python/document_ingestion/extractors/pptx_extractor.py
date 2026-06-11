@@ -13,7 +13,8 @@ from models.document_schema import (
 
 from storage.asset_manager import AssetManager
 from utils.metadata_utils import extract_basic_metadata
-
+from utils.text_cleaner import TextCleaner
+from utils.structure_detector import StructureDetector
 
 class PPTXExtractor:
 
@@ -148,8 +149,10 @@ class PPTXExtractor:
 
             full_text.append("\n".join(slide_text))
 
-        document.extracted_text = "\n".join(full_text)
-
+        raw_text = "/n".join(full_text)
+        document.extracted_text = TextCleaner.clean(raw_text)
+        document.metadata["headings"] = (StructureDetector.detect_headings(document.extracted_text))
+        
         return document
 
     # -------------------------
